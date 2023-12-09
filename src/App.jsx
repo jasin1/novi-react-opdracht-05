@@ -21,8 +21,9 @@ function App() {
         try {
             const result = await
                 axios.get('https://restcountries.com/v3.1/all');
-            console.log(result.data[0]);
-            setCountries(result.data);
+            console.log(result.data);
+            // Data wordt gesorteerd op population van hoog naar laag
+            setCountries(result.data.sort((a, b) => b.population - a.population));
 
         } catch (e) {
             console.error(e);
@@ -37,6 +38,7 @@ function App() {
         try {
             const found = await
                 axios.get(`https://restcountries.com/v3.1/name/${formState}?fullText=true`);
+            console.log(found.data);
             setSearching(found.data);
 
 
@@ -57,7 +59,7 @@ function App() {
         findCountries();
     }
 
-    const countryName = searching.length > 0 ? searching[0].altSpellings[1] : ' ';
+    const countryName = searching.length > 0 ? searching[0].name.common : ' ';
     const countryCapital = searching.length > 0 ? searching[0].capital : ' ';
     const countryFlag = searching.length > 0 ? searching[0].flags : ' ';
     const countryPopulation = searching.length > 0 ? searching[0].population : ' ';
@@ -85,26 +87,28 @@ function App() {
                             <button type="button" onClick={fetchCountries}>Fetch Countries</button>
                         </div>
                     </article>
-                    <article className="countries-wrapper">
-                        {countries.map((country, index) => (
-                            // <ul key={country.name?.common}>
-                            <ul key={index}>
-                                <li>
-                                    <div className="country-container">
-                                        <div className="flag-wrapper">
-                                            <img src={country.flags?.svg} alt="country flag"/>
-                                        </div>
-                                        <div className="country-info">
+                    {countries.length > 0 && (
+                        <article className="countries-wrapper">
+                            {countries.map((country, index) => (
+                                // <ul key={country.name?.common}>
+                                <ul key={index}>
+                                    <li>
+                                        <div className="country-container">
+                                            <div className="flag-wrapper">
+                                                <img src={country.flags?.svg} alt="country flag"/>
+                                            </div>
+                                            <div className="country-info">
                                             <span
                                                 className={regionColor(country.region)}>{country.name?.official}</span>
-                                            <p>Region: {country.region}</p>
-                                            <p>Has a population of {calcPop(country.population)} people</p>
+                                                <p>Region: {country.region}</p>
+                                                <p>Has a population of {calcPop(country.population)} people</p>
+                                            </div>
                                         </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        ))}
-                    </article>
+                                    </li>
+                                </ul>
+                            ))}
+                        </article>
+                    )}
 
                     <article className="search-wrapper">
                         <div className="pic-container">
@@ -120,7 +124,7 @@ function App() {
                                             type="search"
                                             value={formState}
                                             onChange={handleChange}
-                                            placeholder="Search for a country name"
+                                            placeholder="Search for a country by name"
 
                                         />
                                     </label>
