@@ -20,7 +20,7 @@ function regionColor(region) {
 
     }
 
-    return className
+    return className;
 
 }
 

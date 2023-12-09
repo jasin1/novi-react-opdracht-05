@@ -1,10 +1,12 @@
 header{
     padding: 40px;
+    display: flex;
+    justify-content: flex-start;
     /*border-bottom: 1px solid red;*/
 }
 
 h1{
-    font-size: 3rem;
+    font-size: 4rem;
 }
 
 section{
@@ -12,11 +14,11 @@ section{
     flex-direction: column;
     align-items: center;
     max-width: 1200px;
+    margin-bottom: 3rem;
 }
 
 .worldMap-container{
-    max-width: 900px;
-
+    max-width: 700px;
 }
 
 .btn-wrapper{
@@ -33,8 +35,11 @@ button{
     grid-template-columns: repeat(3, 1fr);
     column-gap: 1.8rem;
     row-gap: 2.5rem;
+    height: 460px;
     background: #eeedeb;
     padding: 2rem;
+    overflow: auto;
+    margin-bottom: 4rem;
 }
 
 .country-container{
@@ -45,7 +50,6 @@ button{
 
 .country-container img{
     max-width: 120px;
-    /*height: 80px;*/
 }
 
 .country-info span{
@@ -63,10 +67,26 @@ button{
 
 ul{
 
+
 }
 
 li{
 list-style: none;
+}
+
+.flag-wrapper{
+    width: 120px;
+    height: 80px;
+    overflow: hidden;
+    border-radius: 10px;
+    border: 1px solid #c5c5c5;
+}
+
+.flag-wrapper img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
 }
 
 .blue-text{
@@ -89,6 +109,78 @@ list-style: none;
     color: #9b5ab5;
 }
 
+/*------------------------ Search Results----------------------------*/
+
+.search-wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-wrapper{
+    margin-bottom: 1.5rem;
+}
+
+.search-container{
+    border: 1px solid #000000;
+    border-radius: 10px;
+    padding: .2rem;
+}
+
+input[type=search]{
+    border: none;
+    height: 100%;
+    padding: 10px;
+    width: 420px;
+    font-size: inherit;
+}
+
+.search-btn{
+    background: black;
+    color: white;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    padding: 1rem 2rem;
+    cursor: pointer;
+}
+
+
+.pic-container{
+    width: 224px;
+    height: 279px;
+}
+
+.pic-container img{
+    width: 100%;
+    height: 100%;
+    aspect-ratio: cover;
+}
+
+.search-result-card{
+    max-width: 600px;
+    padding: 1.5rem;
+    background: #eeedeb;
+    border-radius: 20px;
+}
+
+.card-header{
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 1rem;
+}
+
+.card-title{
+
+}
+
+.card-body{
+    margin-bottom: 1rem;
+}
+
+.card-txt{
+
+}
 
 
 
